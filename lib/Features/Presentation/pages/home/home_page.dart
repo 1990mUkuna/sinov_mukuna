@@ -114,7 +114,9 @@ class _HomePageState extends State<HomePage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ArtistDetailsPage(
-                                        artistName: artist.name),
+                                        artistName: artist.name,
+                                        genres: artist.genres,
+                                        ),
                                   ),
                                 );
                               },
