@@ -22,5 +22,5 @@ class PageConst {
   static const String signInPage = "signInPage";
   static const String signUpPage = "signUpPage";
   static const String onboarding = "onboarding";
-  static const String mainScreen = "mainScreen";
+  static const String homeScreen = "homeScreen";
 }

@@ -10,11 +10,28 @@ class ArtistDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(artistName),
+        title: const Text('Artist Details'),
       ),
-      body: Container(
-          // Add artist details UI here
-          ),
+      body:  Container(
+         height: double.infinity,
+        child: Column(
+          children: [
+            Image.asset(
+              "assets/images/spotify-logo.png",
+              height: 60,
+              width: 60,
+            ),
+            Text(
+              artistName,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -11,17 +11,16 @@ import '../Presentation/blocs/spotifyBloc/spotify_state.dart';
 import '../Presentation/blocs/spotifyBloc/spotiy_bloc.dart';
 import '../models/users/user_model.dart';
 
-class ModalPopupForm extends StatefulWidget {
-  const ModalPopupForm({Key? key}) : super(key: key);
+class ModalPopupSearchGenre extends StatefulWidget {
+  const ModalPopupSearchGenre({Key? key}) : super(key: key);
 
   @override
-  _ModalPopupFormState createState() => _ModalPopupFormState();
+  _ModalPopupSearchGenreState createState() => _ModalPopupSearchGenreState();
 }
 
-class _ModalPopupFormState extends State<ModalPopupForm> {
+class _ModalPopupSearchGenreState extends State<ModalPopupSearchGenre> {
   late Future<UserModel?> _getUserModel;
-  final TextEditingController _textFieldUsernameController =
-      TextEditingController();
+   
   final TextEditingController _textFieldGenreController =
       TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -34,7 +33,7 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
 
   @override
   void dispose() {
-    _textFieldUsernameController.dispose();
+    
     _textFieldGenreController.dispose();
     super.dispose();
   }
@@ -64,8 +63,7 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          final UserModel? storedUserModel = snapshot.data;
-
+          final UserModel? storedUserModel = snapshot.data; 
           return AlertDialog(
             title: Column(
               children: [
@@ -91,18 +89,7 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextFormField(
-                    controller: _textFieldUsernameController,
-                    decoration: const InputDecoration(
-                      labelText: 'User name',
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'User Name Required';
-                      }
-                      return null;
-                    },
-                  ),
+                  
                   TextFormField(
                     controller: _textFieldGenreController,
                     decoration: const InputDecoration(
@@ -157,10 +144,7 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
     // Use the uid as needed
     print(uid);
     // Rest of your code...
-    BlocProvider.of<AuthBloc>(context).add(
-      UpdateProfileRequested(
-          uid: uid, userName: _textFieldUsernameController.text),
-    );
+     
     BlocProvider.of<SpotifyBloc>(context).add(
       SpotifyRequested(_textFieldGenreController.text),
     );

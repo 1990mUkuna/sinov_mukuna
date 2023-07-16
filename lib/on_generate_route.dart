@@ -10,7 +10,7 @@ class OnGenerateRoute {
     switch (settings.name) {
       case PageConst.signInPage:
          
-      case PageConst.mainScreen:
+      case PageConst.homeScreen:
         {
           return routeBuilder(const MainScreen());
         }
