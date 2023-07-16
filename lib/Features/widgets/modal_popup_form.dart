@@ -39,7 +39,7 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
     super.dispose();
   }
 
-  void _submitForm() {
+  void _requestSpotifyForm() {
     if (_formKey.currentState!.validate()) {
       // Fields are valid, submit the form
       _requestSpotify(context);
@@ -120,24 +120,22 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
             ),
             actions: [
               BlocListener<SpotifyBloc, SpotifyState>(
-                listener: (context, state) {
-                  if (state is ArticleRequested) {
-                    // Navigating to the dashboard screen if the user is authenticated
-                    Navigator.pushNamed(context, PageConst.homeScreen);
-                  }
+                  listener: (context, state) {
+                    if (state is ArticleRequested) {
+                      // Navigating to the dashboard screen if the user is authenticated
+                      Navigator.pushNamed(context, PageConst.homeScreen);
+                    }
 
-                  if (state is ArticleRequestedError) {
-                    // Showing the error message if the user has entered invalid credentials
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text(state.error)));
-                  }
-                },
-                child: ElevatedButton(
-                  
-                  onPressed: _submitForm,
-                  child: const Text('Submit'),
-                ),
-              ),
+                    if (state is ArticleRequestedError) {
+                      // Showing the error message if the user has entered invalid credentials
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text(state.error)));
+                    }
+                  },
+                  child: ElevatedButton(
+                    onPressed: _requestSpotifyForm,
+                    child: const Text('Submit'),
+                  )),
             ],
           );
         }

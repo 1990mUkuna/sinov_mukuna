@@ -1,18 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart'; 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:hive/hive.dart';
-import 'package:sinov8_tech_assignment/Features/Presentation/blocs/spotifyBloc/spotify_event.dart';
+import 'package:hive/hive.dart'; 
 import 'package:sinov8_tech_assignment/Features/Presentation/pages/artist/artist_details.dart';
 import 'package:sinov8_tech_assignment/Features/models/spotify/artist_model.dart';
 import 'package:sinov8_tech_assignment/Features/widgets/modal_popup_search_genre.dart';
-
-import '../../../../const.dart';
-import '../../../models/users/user_model.dart';
-import '../../../widgets/modal_popup_form.dart';
-import '../../blocs/spotifyBloc/spotify_state.dart';
-import '../../blocs/spotifyBloc/spotiy_bloc.dart';
-
+ 
+import '../../../models/users/user_model.dart'; 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -23,9 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late Future<UserModel?> _getUserModel;
   final TextEditingController _textFieldGenreController =
-      TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+      TextEditingController(); 
   Future<UserModel?> _getData() async {
     final box = await Hive.openBox('userBox');
     final userModel = box.get('user') as UserModel?;
