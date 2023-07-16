@@ -45,31 +45,27 @@ class WelcomePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  sizeVer(50),
-                  const Center(child: Text("Logo")),
+                  sizeVer(250),
+                  const Center(
+                    child: Text(
+                      "Welcome Spotify",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
                   sizeVer(140),
-                  ButtonContainerWidget(
-                    color: blueColor,
-                    text: "Anonymous sign-i",
-                    onTapListener: () {
-                      _authenticateAnonymous(context);
-                    },
-                  ),
-                  sizeVer(17),
-                  ButtonContainerWidget(
-                    color: blueColor,
-                    text: "Email sign in",
-                    onTapListener: () {
-                      //  MaterialPageRoute(builder: (context) => const HomePage());
-                    },
-                  ),
-                  sizeVer(17),
-                  ButtonContainerWidget(
-                    color: blueColor,
-                    text: "Google",
-                    onTapListener: () {
-                      //  MaterialPageRoute(builder: (context) => const HomePage());
-                    },
+                  Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: ButtonContainerWidget(
+                      color: primaryButtonColor,
+                      text: "Anonymous sign-i",
+                      onTapListener: () {
+                        _authenticateAnonymous(context);
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -88,7 +84,7 @@ class WelcomePage extends StatelessWidget {
   }
 
   void _showModalPopup(BuildContext context) {
-    showDialog(
+    showDialog( 
       context: context,
       barrierDismissible: false, // Set barrierDismissible to false
       builder: (BuildContext context) {
@@ -96,7 +92,4 @@ class WelcomePage extends StatelessWidget {
       },
     );
   }
-
-
-
 }

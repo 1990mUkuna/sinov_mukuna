@@ -71,7 +71,7 @@ Future<void> updateProfile({required String uid, required String userName}) asyn
   }
 }
 
-  Future<void> signOut() async {
+Future<void> signOut() async {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {
