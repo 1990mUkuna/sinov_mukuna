@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "298933856851",
+    "project_id": "sinov8-70359",
+    "storage_bucket": "sinov8-70359.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298933856851:android:8b2c8d559b5f2073ed74a6",
+        "android_client_info": {
+          "package_name": "com.example.sinov8_tech_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298933856851-pi6vg008en0vc15j9dj075leug1nb1ge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlbUR_Mja2g5fU4CYu4oL-2qH00gz6BgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298933856851-pi6vg008en0vc15j9dj075leug1nb1ge.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "298933856851-aj7cndam484l2j4ifb1bl8hb3jjajn8t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sinov8TechAssignment"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
