@@ -34,7 +34,7 @@ class ArtistDetailsPage extends StatelessWidget {
     ListView buildGenreListView(List<String> genres) {
       return ListView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: genres.length,
         itemBuilder: (context, index) {
           final genre = genres[index];

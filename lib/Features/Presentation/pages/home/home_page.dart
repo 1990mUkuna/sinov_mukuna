@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:hive/hive.dart'; 
+import 'package:hive/hive.dart';
 import 'package:sinov8_tech_assignment/Features/Presentation/pages/artist/artist_details.dart';
 import 'package:sinov8_tech_assignment/Features/models/spotify/artist_model.dart';
 import 'package:sinov8_tech_assignment/Features/widgets/modal_popup_search_genre.dart';
- 
-import '../../../models/users/user_model.dart'; 
+import 'package:sinov8_tech_assignment/const.dart';
+
+import '../../../models/users/user_model.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -16,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late Future<UserModel?> _getUserModel;
   final TextEditingController _textFieldGenreController =
-      TextEditingController(); 
+      TextEditingController();
   Future<UserModel?> _getData() async {
     final box = await Hive.openBox('userBox');
     final userModel = box.get('user') as UserModel?;
@@ -114,9 +116,9 @@ class _HomePageState extends State<HomePage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ArtistDetailsPage(
-                                        artistName: artist.name,
-                                        genres: artist.genres,
-                                        ),
+                                      artistName: artist.name,
+                                      genres: artist.genres,
+                                    ),
                                   ),
                                 );
                               },
@@ -129,10 +131,11 @@ class _HomePageState extends State<HomePage> {
                                         (artist.images.first as Map)['url'],
                                         fit: BoxFit.cover,
                                       ), */
+                                    sizeVer(10),
                                     Image.asset(
                                       "assets/images/spotify-logo.png",
-                                      height: 60,
-                                      width: 60,
+                                      height: 40,
+                                      width: 40,
                                     ),
                                     // Ot
                                     Padding(
@@ -147,9 +150,12 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
+                                        horizontal: 8.0,
+                                      ),
                                       child: Text(
                                         artist.genres.join(', '),
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(
                                           fontSize: 14,
                                           color: Colors.grey,

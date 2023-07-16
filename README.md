@@ -18,3 +18,10 @@ flutter pub run build_runner build
 
 
 flutter pub run build_runner build --delete-conflicting-outputs --build-filter=lib/Features/models/spotify/artist_model.dart
+
+
+To regards with genre selection 
+
+Due to the chosen UI architecture approach, it would require additional time and effort to refactor the UI in order to enable the population of the list of genres within the modal pop-up for user to select. As a result, in order to provide a quick solution, I have implemented a text field where users can manually input the desired genre instead of selecting from a pre-populated list. This alternative approach allows me to obtain the genre value as an argument based on the user's input, without the need for extensive UI changes at the moment.
+
+
