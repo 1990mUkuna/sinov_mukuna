@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const backGroundColor = Colors.white;
-const blueColor = Color.fromRGBO(0, 149, 246, 1);
+const primaryButtonColor = Color.fromRGBO(31, 169, 3, 1);
 const primaryColor = Colors.black;
 const secondaryColor = Colors.grey;
 const darkGreyColor = Color.fromRGBO(97, 97, 97, 1);
@@ -22,5 +22,5 @@ class PageConst {
   static const String signInPage = "signInPage";
   static const String signUpPage = "signUpPage";
   static const String onboarding = "onboarding";
-  static const String mainScreen = "mainScreen";
+  static const String homeScreen = "homeScreen";
 }

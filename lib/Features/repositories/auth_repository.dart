@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart'; 
 import 'package:hive/hive.dart';
 
 import '../models/users/user_model.dart';
@@ -71,7 +70,7 @@ Future<void> updateProfile({required String uid, required String userName}) asyn
   }
 }
 
-  Future<void> signOut() async {
+Future<void> signOut() async {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {

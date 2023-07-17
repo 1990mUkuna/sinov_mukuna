@@ -7,57 +7,7 @@ import 'package:sinov8_tech_assignment/Features/models/spotify/artist_model.dart
 import '../models/users/user_model.dart';
 
 class SpotifyRepository {
-  /*  Future<String> fetchAccessToken() async {
-    const client_id = '1d5fc06921954b3d850eeab210c539dd';
-    const client_secret = 'c97987886640424f892f4d660ab66de7';
-
-    final authOptions = {
-      'url': 'https://accounts.spotify.com/api/token',
-      'headers': {
-        'Authorization':
-            'Basic ${base64.encode(utf8.encode('$client_id:$client_secret'))}',
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      'data': {'grant_type': 'client_credentials'},
-    };
-
-    try {
-      final dio = Dio();
-      final url = authOptions['url'] as String;
-      final headers = authOptions['headers'] as Map<String, dynamic>;
-      final data = authOptions['data'] as Map<String, dynamic>;
-
-      final formData = Uri(queryParameters: data).query;
-
-      final response = await dio.post(
-        url,
-        options: Options(headers: headers),
-        data: formData,
-      );
-      if (response.statusCode == 200) {
-        final body = response.data;
-        final token = body['access_token'] as String;
-        // Create a UserModel instance
-        final userModel = UserModel(
-            uid: '',
-            email: '', // Set the email value if applicable
-            username: '', // Set the username value if applicable
-            isAnonymous: true,
-            spotifyHeadertoken: token);
-
-        // Store the UserModel instance in Hive
-        final box = await Hive.openBox('userBox');
-        await box.put('user', userModel);
-        await box.close();
-        return token;
-      } else {
-        throw Exception('Failed to fetch access token');
-      }
-    } catch (e) {
-      throw Exception('Failed to fetch access token: $e');
-    }
-  } */
-  Future<String> fetchAccessToken(String genre) async {
+  Future<String> fetchArticle(String genre) async {
     const client_id = '1d5fc06921954b3d850eeab210c539dd';
     const client_secret = 'c97987886640424f892f4d660ab66de7';
 
@@ -120,7 +70,7 @@ class SpotifyRepository {
     final Map<String, dynamic> queryParams = {
       'q': 'genre:"$genre"',
       'type': 'artist',
-      'limit': '100', // Adjust the limit as per your requirements
+      'limit': '10', // Adjust the limit as per your requirements
     };
 
     final Dio dio = Dio();

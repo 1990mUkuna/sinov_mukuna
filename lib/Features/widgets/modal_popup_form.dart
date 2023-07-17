@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:sinov8_tech_assignment/Features/Presentation/blocs/authBloc/auth_bloc.dart';
 import 'package:sinov8_tech_assignment/const.dart';
@@ -20,8 +19,10 @@ class ModalPopupForm extends StatefulWidget {
 
 class _ModalPopupFormState extends State<ModalPopupForm> {
   late Future<UserModel?> _getUserModel;
-  final TextEditingController _textField1Controller = TextEditingController();
-  final TextEditingController _textField2Controller = TextEditingController();
+  final TextEditingController _textFieldUsernameController =
+      TextEditingController();
+  final TextEditingController _textFieldGenreController =
+      TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -32,12 +33,12 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
 
   @override
   void dispose() {
-    _textField1Controller.dispose();
-    _textField2Controller.dispose();
+    _textFieldUsernameController.dispose();
+    _textFieldGenreController.dispose();
     super.dispose();
   }
 
-  void _submitForm() {
+  void _requestSpotifyForm() {
     if (_formKey.currentState!.validate()) {
       // Fields are valid, submit the form
       _requestSpotify(context);
@@ -67,7 +68,21 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
           return AlertDialog(
             title: Column(
               children: [
-                Text('User UID: ${storedUserModel?.uid ?? "Unknown"}'),
+                Text('Your UID: ${storedUserModel?.uid ?? "Unknown"}',
+                    style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    )),
+                sizeVer(10),
+                const Text(
+                  "Search Artist By Genre",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
               ],
             ),
             content: Form(
@@ -76,7 +91,7 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
-                    controller: _textField1Controller,
+                    controller: _textFieldUsernameController,
                     decoration: const InputDecoration(
                       labelText: 'User name',
                     ),
@@ -88,7 +103,7 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
                     },
                   ),
                   TextFormField(
-                    controller: _textField2Controller,
+                    controller: _textFieldGenreController,
                     decoration: const InputDecoration(
                       labelText: 'Genre e.g: rock',
                     ),
@@ -104,23 +119,22 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
             ),
             actions: [
               BlocListener<SpotifyBloc, SpotifyState>(
-                listener: (context, state) {
-                  if (state is ArticleRequested) {
-                    // Navigating to the dashboard screen if the user is authenticated
-                    Navigator.pushNamed(context, PageConst.mainScreen);
-                  }
+                  listener: (context, state) {
+                    if (state is ArticleRequested) {
+                      // Navigating to the dashboard screen if the user is authenticated
+                      Navigator.pushNamed(context, PageConst.homeScreen);
+                    }
 
-                  if (state is ArticleRequestedError) {
-                    // Showing the error message if the user has entered invalid credentials
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text(state.error)));
-                  }
-                },
-                child: ElevatedButton(
-                  onPressed: _submitForm,
-                  child: const Text('Submit'),
-                ),
-              ),
+                    if (state is ArticleRequestedError) {
+                      // Showing the error message if the user has entered invalid credentials
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text(state.error)));
+                    }
+                  },
+                  child: ElevatedButton(
+                    onPressed: _requestSpotifyForm,
+                    child: const Text('Submit'),
+                  )),
             ],
           );
         }
@@ -142,10 +156,11 @@ class _ModalPopupFormState extends State<ModalPopupForm> {
     print(uid);
     // Rest of your code...
     BlocProvider.of<AuthBloc>(context).add(
-      UpdateProfileRequested(uid: uid, userName: _textField1Controller.text),
+      UpdateProfileRequested(
+          uid: uid, userName: _textFieldUsernameController.text),
     );
     BlocProvider.of<SpotifyBloc>(context).add(
-      SpotifyRequested(_textField2Controller.text),
+      SpotifyRequested(_textFieldGenreController.text),
     );
   }
 }

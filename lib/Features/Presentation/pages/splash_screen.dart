@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'credential/welcome_page.dart';
+import 'Authentication/anonymous_login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
